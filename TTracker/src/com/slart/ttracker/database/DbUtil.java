@@ -1,0 +1,43 @@
+package com.slart.ttracker.database;
+
+import android.content.ContentResolver;
+import android.content.ContentValues;
+import android.database.Cursor;
+import android.net.Uri;
+
+import com.slart.ttracker.database.contentprovider.TrackContentProvider;
+import com.slart.ttracker.database.table.TrackTable;
+
+public class DbUtil {
+	
+	public static Uri buildUri(Long id) {
+		return Uri.parse(TrackContentProvider.CONTENT_URI + "/" + id);	
+	}
+
+	public static Cursor fetchTrack(Long id, ContentResolver cr) {
+		return fetchTrack(buildUri(id), cr);
+	}
+	
+	public static Cursor fetchTrack(Uri uri, ContentResolver cr) {
+		Cursor cursor = cr.query(uri, TrackTable.getProjection(), null, null, null);
+		if (cursor != null) {
+			return cursor;
+		}
+		return null;
+	}
+	
+	public static Cursor fetchAllTracks(ContentResolver cr, String where) {
+		return cr.query(TrackContentProvider.CONTENT_URI, TrackTable.getProjection(), where, null, null);
+	}
+	
+	public static void closeTrack(ContentResolver cr, Long id) {
+		ContentValues values = new ContentValues();
+		values.put(TrackTable.COLUMN_END, System.currentTimeMillis());
+		cr.update(buildUri(id), values, null, null);
+	}
+	
+	public static void deleteTrack(ContentResolver cr, Long id) {
+		cr.delete(buildUri(id), null, null);
+	}
+
+}
