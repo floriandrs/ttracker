@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    
+    <item android:id="@+id/update_track"
+          android:title="@+string/update_track" />
+
+    <item android:id="@+id/delete_track"
+          android:title="@+string/update_track" />
+
+    <item android:id="@+id/export_track_to_calendar"
+          android:title="@+string/update_track" />
+
+    <item android:id="@+id/view_track_in_gmap"
+          android:title="SEND TO CALENDAR" />
+
+</menu>

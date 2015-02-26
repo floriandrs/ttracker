@@ -1,0 +1,11 @@
+1424374902212	Rename field 'track'
+1424374912784	Rename field 'comment'
+1424374946562	Rename field 'startDate'
+1424374951603	Rename field 'startTime'
+1424374956263	Rename field 'endDate'
+1424374960423	Rename field 'endTime'
+1424463396518	Rename local variable 'cursor'
+1424463401545	Rename local variable 'track'
+1424548733506	Move compilation unit
+1424550143601	Move compilation unit
+1424550188416	Rename type 'StatsSimple'

@@ -1,9 +1,7 @@
 package com.slart.ttracker.database.dao;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -18,26 +16,22 @@ public class CategoryDao {
 	
 	private SQLiteDatabase database;
 	private DatabaseHelper dbHelper;
-	private String[] allColumns = { CategoryTable.COLUMN_ID, CategoryTable.COLUMN_NAME };
+	private String[] projection;
 
 	public CategoryDao(Context context) {
 		dbHelper = new DatabaseHelper(context);
 		database = dbHelper.getWritableDatabase();
+		projection = CategoryTable.getProjection();
 	}
 
 	public void close() {
 		dbHelper.close();
 	}
 
-	public Category createCategory(String category) {
+	public void createCategory(String category) {
 		ContentValues values = new ContentValues();
 		values.put(CategoryTable.COLUMN_NAME, category);
-		long insertId = database.insert(CategoryTable.TABLE_CATEGORY, null, values);
-		Cursor cursor = database.query(CategoryTable.TABLE_CATEGORY, allColumns, CategoryTable.COLUMN_ID + " = " + insertId, null, null, null, null);
-		cursor.moveToFirst();
-		Category newCategory = cursorToCategory(cursor);
-		cursor.close();
-		return newCategory;
+		database.insert(CategoryTable.TABLE_CATEGORY, null, values);
 	}
 
 	public void deleteCategory(Category category) {
@@ -49,7 +43,7 @@ public class CategoryDao {
 	}
 	
 	public int count(String where) {
-		Cursor cursor = database.query(CategoryTable.TABLE_CATEGORY, allColumns, where, null, null, null, null);
+		Cursor cursor = database.query(CategoryTable.TABLE_CATEGORY, projection, where, null, null, null, null);
 		return cursor.getCount();
 	}
 
@@ -57,7 +51,7 @@ public class CategoryDao {
 
 		List<Category> categories = new ArrayList<Category>();
 
-		Cursor cursor = database.query(CategoryTable.TABLE_CATEGORY, allColumns, null, null, null, null, null);
+		Cursor cursor = database.query(CategoryTable.TABLE_CATEGORY, projection, null, null, null, null, null);
 		cursor.moveToFirst();
 		while (!cursor.isAfterLast()) {
 			Category category = cursorToCategory(cursor);
@@ -78,13 +72,12 @@ public class CategoryDao {
 		}
 		return names;
 	}
-
+	
 	private Category cursorToCategory(Cursor cursor) {
 		Category category = new Category();
 		category.setId(cursor.getLong(0));
 		category.setName(cursor.getString(1));
 		return category;
 	}
-
 
 }

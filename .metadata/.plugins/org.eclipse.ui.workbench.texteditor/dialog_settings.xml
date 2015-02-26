@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item value="&#x09;&#x09;String stringUrl = &quot;https://maps.googleapis.com/maps/api/geocode/json?latlng=49.7675,6.62895&quot;;" key="selection"/>
+		<list key="findhistory">
+			<item value="&#x09;&#x09;String stringUrl = &quot;https://maps.googleapis.com/maps/api/geocode/json?latlng=49.7675,6.62895&quot;;"/>
+		</list>
+	</section>
+</section>

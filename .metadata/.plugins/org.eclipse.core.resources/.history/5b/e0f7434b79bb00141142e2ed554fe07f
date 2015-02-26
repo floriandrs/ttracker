@@ -1,0 +1,5 @@
+package com.slart.ttracker.database.model;
+
+public class Category {
+
+}

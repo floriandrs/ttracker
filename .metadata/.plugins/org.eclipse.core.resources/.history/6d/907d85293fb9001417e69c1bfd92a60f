@@ -1,0 +1,35 @@
+package com.slart.ttracker;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import android.content.ContentResolver;
+import android.database.Cursor;
+import android.net.Uri;
+
+import com.slart.ttracker.database.TrackContentProvider;
+import com.slart.ttracker.database.TrackTable;
+
+public class DbUtil {
+	
+	public static Uri buildUri(Long id) {
+		return Uri.parse(TrackContentProvider.CONTENT_URI + "/" + id);	
+	}
+
+	public static Cursor fetchTrack(Long id, ContentResolver cr) {
+		return fetchTrack(buildUri(id), cr);
+	}
+	
+	public static Cursor fetchTrack(Uri uri, ContentResolver cr) {
+		Cursor cursor = cr.query(uri, TrackTable.getProjection(), null, null, null);
+		if (cursor != null) {
+			return cursor;
+		}
+		return null;
+	}
+	
+	public static Cursor fetchAllTracks(String where, TrackContentProvider cp) {
+		Cursor cursor = cp.query(TrackContentProvider.CONTENT_URI, TrackTable.getProjection(), where, null, null);
+	}
+
+}

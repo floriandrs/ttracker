@@ -34,7 +34,7 @@ public class TrackCursorAdapter extends CursorAdapter {
 	       String startString = DateUtils.formatDateTime(context, startDate, DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_SHOW_TIME);
 	       String endString = DateUtils.formatDateTime(context, endDate, DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_SHOW_TIME);
 	       
-	       String rangeString  = DateUtils.formatDateRange(context, startDate, endDate, DateUtils.FORMAT_ABBREV_ALL | DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_SHOW_TIME);
+	       //String rangeString  = DateUtils.formatDateRange(context, startDate, endDate, DateUtils.FORMAT_ABBREV_ALL | DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_SHOW_TIME);
 	       
 	       String myRangeString = startString;
 	       if (endDate != 0L) {

@@ -1,0 +1,5 @@
+package com.slart.ttracker.database;
+
+public class CategoryTable {
+
+}

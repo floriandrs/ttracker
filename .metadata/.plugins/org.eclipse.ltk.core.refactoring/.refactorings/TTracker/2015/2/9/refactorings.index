@@ -1,0 +1,39 @@
+1424615588599	Rename field 'trackField'
+1424637121127	Move compilation unit
+1424638043280	Rename field 'currentLatitude'
+1424638115419	Rename field 'currentLongitude'
+1424638122077	Rename field 'latitude'
+1424638129302	Rename field 'longitude'
+1424676476166	Rename type 'CreateNewTrackActivity'
+1424683137913	Move compilation unit
+1424683144757	Move compilation unit
+1424707283646	Move compilation unit
+1424708344810	Rename type 'EditCategoriesActivity'
+1424708391879	Move compilation unit
+1424708399229	Move compilation unit
+1424708436928	Move compilation unit
+1424708512599	Move compilation unit
+1424708578513	Rename type 'TrackDatabaseHelper'
+1424708605319	Move compilation unit
+1424708653987	Move compilation unit
+1424708679147	Move compilation unit
+1424708683647	Move compilation unit
+1424708686579	Delete element
+1424711513698	Copy file
+1424718871988	Rename resource 'activity_edit_categories.xml'
+1424719747011	Delete element
+1424719759036	Delete element
+1424719766350	Delete element
+1424719863128	Move compilation unit
+1424810934332	Delete element
+1424810938105	Delete element
+1424810941854	Delete element
+1424810945274	Delete element
+1424811843468	Copy file
+1424812466628	Rename resource 'cateogry_list_item.xml'
+1424812798103	Rename field 'datasource'
+1424842404833	Delete element
+1424895704000	Delete element
+1424970472822	Delete element
+1424982384447	Rename field 'allColumns'
+1424984648051	Rename package 'com.slart.ttracker.activitiy'

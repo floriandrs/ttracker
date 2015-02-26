@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">TTracker</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="title_activity_view_all_tracks">ViewAllTracksActivity</string>
+    <string name="title_activity_edit_track">Neue Aktivitaet anlegen</string>
+    <string name="title_activity_stats">StatsActivity</string>
+    <string name="title_activity_stats_simple">StatsSimple</string>
+    <string name="title_activity_stats_average">StatsAverageActivity</string>
+
+    <string name="main_open_create_new_track_label">Start new</string>
+    <string name="open_view_all">Track-Liste öffnen</string>
+    <string name="open_time_filter_stats">Tracks pro Zeitraum</string>
+    <string name="open_activity_stats">Analyse</string>
+    <string name="open_activity_stats_simple">Summen pro Kategorie</string>
+    <string name="open_activity_stats_average">Durchschnitt pro Kategorie</string>
+
+    <string name="open_create_new_track">Neuen Track starten</string>
+    <string name="close_current_track">Aktuellen Track stoppen</string>
+    <string name="update_current_track">Aktuellen Track editieren</string>
+    <string name="current_track_label">Aktiver Track:</string>
+
+    <string name="create">Anlegen</string>
+    <string name="update">Aktualisieren</string>
+    <string name="location_update">+</string>
+    <string name="now">jetzt</string>
+    <string name="today">heute</string>
+    <string name="empty">-</string>
+    <string name="none">Kein aktiver Track</string>
+    <string name="location">Position (Lat,Long)</string>
+    <string name="comment">Kommentar</string>
+    <string name="track">Task</string>
+    <string name="from">von</string>
+    <string name="to">bis</string>
+    <string name="started_new_track">Neuer Track gestartet: </string>
+
+    <string name="update_track">Bearbeiten</string>
+    <string name="delete_track">Löschen</string>
+    <string name="export_track_to_calendar">Export an Kalender</string>
+    <string name="view_track_in_map">In Karte ansehen</string>
+
+    <string-array name="tracks_array">
+        <item>Programmieren</item>
+        <item>Meeting</item>
+        <item>Testing</item>
+    </string-array>
+
+</resources>

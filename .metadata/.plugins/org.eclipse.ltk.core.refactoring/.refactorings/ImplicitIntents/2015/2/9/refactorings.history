@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move package &apos;com.fdrs.kgse.implicitintents&apos; to &apos;Migrate/src&apos;&#x0A;- Original project: &apos;ImplicitIntents&apos;&#x0A;- Destination element: &apos;Migrate/src&apos;&#x0A;- Original element: &apos;ImplicitIntents/src/com.fdrs.kgse.implicitintents&apos;&#x0A;- Update references to refactored element" description="Move package" destination="=Migrate/src" element1="/src&lt;com.fdrs.kgse.implicitintents" flags="589830" fragments="1" id="org.eclipse.jdt.ui.move" policy="org.eclipse.jdt.ui.movePackages" stamp="1424808234395" version="1.0"/>
+</session>

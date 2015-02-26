@@ -1,0 +1,115 @@
+package com.slart.ttracker.activitiy;
+
+import java.util.List;
+
+import android.app.ListActivity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView.AdapterContextMenuInfo;
+import android.widget.ArrayAdapter;
+
+import com.slart.ttracker.R;
+import com.slart.ttracker.database.dao.CategoryDao;
+import com.slart.ttracker.database.model.Category;
+
+public class ViewAllCategoriesActivity extends ListActivity {
+
+	private CategoryDao datasource;
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		datasource = new CategoryDao(this);
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		List<Category> values = datasource.getAllCategories();
+		ArrayAdapter<Category> adapter = new ArrayAdapter<Category>(this, android.R.layout.simple_list_item_1, values); 
+		setListAdapter(adapter);
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.view_all_categories, menu);
+		return true;
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    // Handle presses on the action bar items
+	    switch (item.getItemId()) {
+	        case R.id.action_add:
+	            launchEditCategoryActivity();
+	            return true;
+	        default:
+	            return super.onOptionsItemSelected(item);
+	    }
+	}
+
+	@Override
+	public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
+		super.onCreateContextMenu(menu, v, menuInfo);
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.track_list_item, menu);
+	}
+
+	@Override
+	public boolean onContextItemSelected(MenuItem item) {
+		AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
+		switch (item.getItemId()) {
+		case R.id.delete_track:
+			deleteCategory(info.id);
+			return true;
+		default:
+			return super.onContextItemSelected(item);
+		}
+	}
+	
+	private void deleteCategory(long id ) {
+		
+	}
+	
+	private void launchEditCategoryActivity() {
+		Intent intent = new Intent(this, EditCategoryActivity.class);
+		startActivity(intent);
+	}
+	
+	/*
+
+	// Will be called via the onClick attribute
+	// of the buttons in main.xml
+	public void onClick(View view) {
+		@SuppressWarnings("unchecked")
+		ArrayAdapter<Category> adapter = (ArrayAdapter<Category>) getListAdapter();
+		Category category = null;
+		switch (view.getId()) {
+		case R.id.add:
+			String[] categories = new String[] { "Cool", "Very nice", "Hate it" };
+			int nextInt = new Random().nextInt(3);
+			// save the new category to the database
+			category = datasource.createCategory(categories[nextInt]);
+			adapter.add(category);
+			break;
+		case R.id.delete:
+			if (getListAdapter().getCount() > 0) {
+				category = (Category) getListAdapter().getItem(0);
+				datasource.deleteCategory(category);
+				adapter.remove(category);
+			}
+			break;
+		}
+		adapter.notifyDataSetChanged();
+	}
+	*/
+
+
+}

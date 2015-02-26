@@ -3,7 +3,9 @@ package com.slart.ttracker.util;
 import java.text.Format;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.concurrent.TimeUnit;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.widget.Toast;
 
@@ -65,6 +67,22 @@ public class Util {
 			result += e2;
 		}
 		return result;
+	}
+	
+	public static boolean latLonIsEmpty(Double lat, Double lon) {
+		if (lat == null || lon == null || lat == 0.0 || lon == 0.0) {
+			return true;
+		}
+		return false;
+	}
+	
+	@SuppressLint("DefaultLocale")
+	public static String formatMillis(Long millis) {
+		return String.format("%d min, %d sec", 
+				TimeUnit.MILLISECONDS.toMinutes(millis),
+				TimeUnit.MILLISECONDS.toSeconds(millis) - 
+				TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millis))
+			); 
 	}
 	
 }

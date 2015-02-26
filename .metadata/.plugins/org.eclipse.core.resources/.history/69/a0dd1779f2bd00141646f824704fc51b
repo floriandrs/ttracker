@@ -1,0 +1,154 @@
+package com.slart.ttracker.activitiy;
+
+import java.util.Calendar;
+
+import android.app.ListActivity;
+import android.app.LoaderManager;
+import android.content.CursorLoader;
+import android.content.Intent;
+import android.content.Loader;
+import android.database.Cursor;
+import android.net.Uri;
+import android.os.Bundle;
+import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView.AdapterContextMenuInfo;
+import android.widget.ListView;
+
+import com.fdrs.ttracker.R;
+import com.slart.ttracker.database.DbUtil;
+import com.slart.ttracker.database.contentprovider.TrackContentProvider;
+import com.slart.ttracker.database.cursoradapter.TrackCursorAdapter;
+import com.slart.ttracker.database.table.TrackTable;
+import com.slart.ttracker.util.Util;
+
+public class ViewAllTracksActivity extends ListActivity implements LoaderManager.LoaderCallbacks<Cursor> {
+
+	private TrackCursorAdapter adapter;
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+
+		setContentView(R.layout.activity_view_all_tracks);
+
+		ListView listView = getListView();
+		listView.setDividerHeight(3);
+		fillData();
+		registerForContextMenu(listView);
+
+	}
+
+	private void fillData() {
+		getLoaderManager().initLoader(0, null, this);
+		adapter = new TrackCursorAdapter(this, null, 0);
+		setListAdapter(adapter);
+	}
+
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getMenuInflater().inflate(R.menu.view_all_tracks, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		int id = item.getItemId();
+		if (id == R.id.action_settings) {
+			return true;
+		}
+		return super.onOptionsItemSelected(item);
+	}
+
+	// creates a new loader after the initLoader () call
+	@Override
+	public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+		CursorLoader cursorLoader = new CursorLoader(this, TrackContentProvider.CONTENT_URI, TrackTable.getProjection(), null, null, null);
+		return cursorLoader;
+	}
+
+	@Override
+	public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+		adapter.swapCursor(data);
+	}
+
+	@Override
+	public void onLoaderReset(Loader<Cursor> loader) {
+		adapter.swapCursor(null);
+	}
+
+	@Override
+	public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
+		super.onCreateContextMenu(menu, v, menuInfo);
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.track_list_item, menu);
+	}
+
+	@Override
+	public boolean onContextItemSelected(MenuItem item) {
+		AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
+		switch (item.getItemId()) {
+		case R.id.delete_track:
+			deleteTrack(info.id);
+			return true;
+		case R.id.export_track_to_calendar:
+			exportTrackToCalendar(info.id);
+			return true;
+		case R.id.update_track:
+			updateTrack(info.id);
+			return true;
+		case R.id.view_track_in_map:
+			viewTrackInMap(info.id);
+			return true;
+		default:
+			return super.onContextItemSelected(item);
+		}
+	}
+
+	protected void exportTrackToCalendar(long id) {
+		// Fetch track from db
+		// Export to calendar
+		Calendar cal = Calendar.getInstance();              
+		Intent intent = new Intent(Intent.ACTION_EDIT);
+		intent.setType("vnd.android.cursor.item/event");
+		intent.putExtra("beginTime", cal.getTimeInMillis());
+		intent.putExtra("allDay", true);
+		intent.putExtra("rrule", "FREQ=YEARLY");
+		intent.putExtra("endTime", cal.getTimeInMillis()+60*60*1000);
+		intent.putExtra("title", "A Test Event from android app");
+		startActivity(intent);
+	}
+
+	protected void updateTrack(long id) {
+		Intent intent = new Intent(this, EditTrackActivity.class);
+		intent.putExtra(TrackContentProvider.CONTENT_ITEM_TYPE, DbUtil.buildUri(id));
+		startActivity(intent);
+	}
+
+	protected void deleteTrack(long id) {
+		getContentResolver().delete(DbUtil.buildUri(id), null, null);
+	}
+
+	protected void viewTrackInMap(long id) {
+		
+		Cursor c = DbUtil.fetchTrack(id, getContentResolver());
+		Double lat = c.getDouble(c.getColumnIndex(TrackTable.COLUMN_LAT));
+		Double lon = c.getDouble(c.getColumnIndex(TrackTable.COLUMN_LON));
+		
+		if (Util.latLonIsEmpty(lat, lon)) {
+			Util.toast(getApplicationContext(), getString(R.string.lat_or_lon_must_be_set));
+		}
+		else {
+			String url = "http://maps.google.com/maps?t=h&q=loc:35.487895,-87.332414&z=10";
+			Intent i = new Intent(Intent.ACTION_VIEW);
+			i.setData(Uri.parse(url));
+			startActivity(i);
+		}
+	}
+
+}
