@@ -200,9 +200,14 @@ public class EditTrackActivity extends Activity {
 	}
 	
 	public void onCreateNewTrack(View view) {
+
 		saveState();
+
+		Class<? extends Activity> clazz = ;
+
 		Intent intent = new Intent(this, update ? ViewAllTracksActivity.class : MainActivity.class);
 		startActivity(intent);
+
 	}
 	
 	

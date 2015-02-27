@@ -72,8 +72,6 @@ public class EditTrackActivity extends Activity {
 	private double currentLat;
 	private double currentLon;
 	
-	private boolean update;
-	
 	private Uri trackUri;
 	
 	@Override
@@ -98,8 +96,6 @@ public class EditTrackActivity extends Activity {
 		
 		Bundle extras = getIntent().getExtras();
 		if (extras == null) {
-			
-			update = false;
 
 			startDateField.setText(getString(R.string.today));
 			startTimeField.setText(getString(R.string.now));
@@ -113,8 +109,6 @@ public class EditTrackActivity extends Activity {
 
 		}
 		else {
-
-			update = true;
 
 			trackUri = extras.getParcelable(TrackContentProvider.CONTENT_ITEM_TYPE);
 			fillData(trackUri);
@@ -201,7 +195,7 @@ public class EditTrackActivity extends Activity {
 	
 	public void onCreateNewTrack(View view) {
 		saveState();
-		Intent intent = new Intent(this, update ? ViewAllTracksActivity.class : MainActivity.class);
+		Intent intent = new Intent(this, MainActivity.class);
 		startActivity(intent);
 	}
 	

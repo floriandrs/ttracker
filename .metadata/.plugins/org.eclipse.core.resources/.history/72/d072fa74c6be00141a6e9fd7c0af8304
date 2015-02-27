@@ -35,7 +35,7 @@
             android:name="com.slart.ttracker.database.contentprovider.TrackContentProvider"
             android:authorities="com.slart.ttracker.track.contentprovider"
             android:enabled="true"
-            android:exported="false" >
+            android:exported="true" >
         </provider>
 
         <activity
@@ -60,7 +60,8 @@
         </activity>
         <activity
             android:name="com.slart.ttracker.activity.ViewAllCategoriesActivity"
-            android:label="@string/title_activity_view_all_categories" >
+            android:label="@string/title_activity_view_all_categories" 
+            android:parentActivityName="com.slart.ttracker.activity.MainActivity" >
             <meta-data
             android:name="android.support.PARENT_ACTIVITY"
             android:value="com.slart.ttracker.activity.MainActivity" />

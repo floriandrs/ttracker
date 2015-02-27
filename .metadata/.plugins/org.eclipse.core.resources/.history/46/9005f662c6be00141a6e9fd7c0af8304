@@ -80,16 +80,14 @@
         android:id="@+id/lat"
         android:layout_width="96dp"
         android:layout_height="45dp"
-        android:layout_below="@id/locationLabel"
-        android:inputType="phone" /> 
+        android:layout_below="@id/locationLabel" /> 
 
     <EditText
         android:id="@+id/lon"
         android:layout_width="96dp"
         android:layout_height="45dp"
         android:layout_below="@id/locationLabel"
-        android:layout_toRightOf="@id/lat"
-        android:inputType="phone" /> 
+        android:layout_toRightOf="@id/lat" /> 
 
     <Button
         android:id="@+id/locationButton"

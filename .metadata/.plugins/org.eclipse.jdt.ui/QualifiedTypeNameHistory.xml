@@ -48,4 +48,6 @@
 <fullyQualifiedTypeName name="android.net.LocalSocketAddress.Namespace"/>
 <fullyQualifiedTypeName name="java.util.Locale"/>
 <fullyQualifiedTypeName name="com.slart.ttracker.util.Util"/>
+<fullyQualifiedTypeName name="com.slart.ttracker.activity.ViewAllCategoriesActivity"/>
+<fullyQualifiedTypeName name="com.slart.ttracker.activity.MainActivity"/>
 </qualifiedTypeNameHistroy>
