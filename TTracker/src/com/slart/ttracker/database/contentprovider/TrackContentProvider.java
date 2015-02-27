@@ -35,26 +35,25 @@ public class TrackContentProvider extends ContentProvider {
 		sURIMatcher.addURI(AUTHORITY, BASE_PATH + "/#", TRACK_ID);
 	}
 
-	public TrackContentProvider() {
-	}
+	public TrackContentProvider() {}
 
 	@Override
 	public int delete(Uri uri, String selection, String[] selectionArgs) {
 
 		int uriType = sURIMatcher.match(uri);
-		SQLiteDatabase sqlDB = db.getWritableDatabase();
+		SQLiteDatabase database = db.getWritableDatabase();
 		int rowsDeleted = 0;
 
 		switch (uriType) {
 		case TRACKS:
-			rowsDeleted = sqlDB.delete(TrackTable.TABLE_TRACK, selection, selectionArgs);
+			rowsDeleted = database.delete(TrackTable.TABLE_TRACK, selection, selectionArgs);
 			break;
 		case TRACK_ID:
 			String id = uri.getLastPathSegment();
 			if (TextUtils.isEmpty(selection)) {
-				rowsDeleted = sqlDB.delete(TrackTable.TABLE_TRACK, TrackTable.COLUMN_ID + "=" + id, null);
+				rowsDeleted = database.delete(TrackTable.TABLE_TRACK, TrackTable.COLUMN_ID + "=" + id, null);
 			} else {
-				rowsDeleted = sqlDB.delete(TrackTable.TABLE_TRACK, TrackTable.COLUMN_ID + "=" + id + " and " + selection, selectionArgs);
+				rowsDeleted = database.delete(TrackTable.TABLE_TRACK, TrackTable.COLUMN_ID + "=" + id + " and " + selection, selectionArgs);
 			}
 			break;
 		default:
@@ -62,15 +61,13 @@ public class TrackContentProvider extends ContentProvider {
 		}
 
 		getContext().getContentResolver().notifyChange(uri, null);
-
 		return rowsDeleted;
 
 	}
 
 	@Override
 	public String getType(Uri uri) {
-		// TODO: Implement this to handle requests for the MIME type of the data
-		// at the given URI.
+		// Ist fuer MIME-Type abfragen
 		throw new UnsupportedOperationException("Not yet implemented");
 	}
 
@@ -78,18 +75,17 @@ public class TrackContentProvider extends ContentProvider {
 	public Uri insert(Uri uri, ContentValues values) {
 		
 		int uriType = sURIMatcher.match(uri);
-		SQLiteDatabase sqlDB = db.getWritableDatabase();
+		SQLiteDatabase database = db.getWritableDatabase();
 		long id = 0;
 		switch (uriType) {
 			case TRACKS:
-				id = sqlDB.insert(TrackTable.TABLE_TRACK, null, values);
+				id = database.insert(TrackTable.TABLE_TRACK, null, values);
 				break;
 			default:
 				throw new IllegalArgumentException("Unknown URI: " + uri);
 		}
 
 		getContext().getContentResolver().notifyChange(uri, null);
-
 		return Uri.parse(BASE_PATH + "/" + id);
 		
 	}
@@ -103,13 +99,8 @@ public class TrackContentProvider extends ContentProvider {
 	@Override
 	public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
 		
-		  // Using SQLiteQueryBuilder instead of query() method
+		// Query Builder ist eine Alternative zur einfache query Methode
 	    SQLiteQueryBuilder queryBuilder = new SQLiteQueryBuilder();
-
-	    // check if the caller has requested a column which does not exists
-	    //checkColumns(projection);
-
-	    // Set the table
 	    queryBuilder.setTables(TrackTable.TABLE_TRACK);
 
 	    int uriType = sURIMatcher.match(uri);
@@ -117,7 +108,6 @@ public class TrackContentProvider extends ContentProvider {
 	    case TRACKS:
 	      break;
 	    case TRACK_ID:
-	      // adding the ID to the original query
 	      queryBuilder.appendWhere(TrackTable.COLUMN_ID + "=" + uri.getLastPathSegment());
 	      break;
 	    default:
@@ -126,7 +116,6 @@ public class TrackContentProvider extends ContentProvider {
 
 	    SQLiteDatabase database = db.getWritableDatabase();
 	    Cursor cursor = queryBuilder.query(database, projection, selection, selectionArgs, null, null, sortOrder);
-	    // make sure that potential listeners are getting notified
 	    cursor.setNotificationUri(getContext().getContentResolver(), uri);
 
 	    return cursor;
@@ -142,12 +131,12 @@ public class TrackContentProvider extends ContentProvider {
 	public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
 
 	    int uriType = sURIMatcher.match(uri);
-	    SQLiteDatabase sqlDB = db.getWritableDatabase();
+	    SQLiteDatabase database = db.getWritableDatabase();
 	    int rowsUpdated = 0;
 
 	    switch (uriType) {
 	    case TRACKS:
-	    	rowsUpdated = sqlDB.update(TrackTable.TABLE_TRACK, 
+	    	rowsUpdated = database.update(TrackTable.TABLE_TRACK, 
 	    			values, 
 	    			selection,
 	    			selectionArgs);
@@ -155,13 +144,13 @@ public class TrackContentProvider extends ContentProvider {
 	    case TRACK_ID:
 	    	String id = uri.getLastPathSegment();
 	    	if (TextUtils.isEmpty(selection)) {
-	    		rowsUpdated = sqlDB.update(TrackTable.TABLE_TRACK, 
+	    		rowsUpdated = database.update(TrackTable.TABLE_TRACK, 
 	    				values,
 	    				TrackTable.COLUMN_ID + "=" + id, 
 	    				null);
 	    	} 
 	    	else {
-	    		rowsUpdated = sqlDB.update(TrackTable.TABLE_TRACK, 
+	    		rowsUpdated = database.update(TrackTable.TABLE_TRACK, 
 	    				values,
 	    				TrackTable.COLUMN_ID + "=" + id 
 	    				+ " and " 

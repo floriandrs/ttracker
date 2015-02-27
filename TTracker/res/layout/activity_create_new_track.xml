@@ -50,7 +50,6 @@
         android:layout_below="@id/startTime"
         android:text="@string/to"
         style="@style/FormLabel" />	
-        
     
     <Button
         android:id="@+id/endDate"

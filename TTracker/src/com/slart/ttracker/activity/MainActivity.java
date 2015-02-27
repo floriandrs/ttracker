@@ -21,12 +21,11 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		refreshState();
 	}
-
-	@Override
-	protected void onResume() {
-		super.onResume();
-		
+	
+	private void refreshState() {
+	
 		Cursor currentTrackCursor = fetchCurrentTrack();
 		int activeCount = currentTrackCursor.getCount();
 
@@ -50,7 +49,7 @@ public class MainActivity extends Activity {
 			String category = currentTrackCursor.getString(currentTrackCursor.getColumnIndexOrThrow(TrackTable.COLUMN_CATEGORY));
 			currentTrackValue.setText(category);
 		}
-		
+
 	}
 
 	@Override
@@ -69,10 +68,8 @@ public class MainActivity extends Activity {
 	}
 	
 	protected Cursor fetchCurrentTrack() {
-
 		Cursor cursor = DbUtil.fetchAllTracks(getContentResolver(), TrackTable.COLUMN_END+"=0");
 		int activeCount = cursor.getCount();
-
 		if (activeCount>=1) {
 			cursor.moveToFirst();
 			return cursor;
@@ -80,7 +77,6 @@ public class MainActivity extends Activity {
 		else {
 			return cursor;
 		}
-		
 	}
 	
 	/** 
@@ -95,8 +91,7 @@ public class MainActivity extends Activity {
 		Cursor c = fetchCurrentTrack();
 		Long id = c.getLong(c.getColumnIndexOrThrow(TrackTable.COLUMN_ID));
 		DbUtil.closeTrack(getContentResolver(), id);
-		finish();
-		startActivity(getIntent());
+		refreshState();
 	}
 
 	public void onUpdateCurrentTrack(View view) {

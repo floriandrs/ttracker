@@ -28,17 +28,17 @@ public class CategoryDao {
 		dbHelper.close();
 	}
 
-	public void createCategory(String category) {
+	public void insert(String category) {
 		ContentValues values = new ContentValues();
 		values.put(CategoryTable.COLUMN_NAME, category);
 		database.insert(CategoryTable.TABLE_CATEGORY, null, values);
 	}
 
-	public void deleteCategory(Category category) {
+	public void delete(Category category) {
 		database.delete(CategoryTable.TABLE_CATEGORY, CategoryTable.COLUMN_ID + " = " + category.getId(), null);
 	}
 
-	public void deleteCategoryByName(String name) {
+	public void deleteByName(String name) {
 		database.delete(CategoryTable.TABLE_CATEGORY, CategoryTable.COLUMN_NAME + " = '" + name +"'", null);
 	}
 	
@@ -46,8 +46,17 @@ public class CategoryDao {
 		Cursor cursor = database.query(CategoryTable.TABLE_CATEGORY, projection, where, null, null, null, null);
 		return cursor.getCount();
 	}
+	
+	
+	public List<Category> query() {
+		return query(null, null, null);
+	}
 
-	public List<Category> getAllCategories() {
+	public List<Category> query(String selection, String[] selectionArgs, String sortOrder) {
+		return query(projection, selection, selectionArgs, sortOrder);
+	}
+
+	public List<Category> query(String[] projection, String selection, String[] selectionArgs, String sortOrder) {
 
 		List<Category> categories = new ArrayList<Category>();
 
@@ -64,8 +73,8 @@ public class CategoryDao {
 
 	}
 	
-	public List<String> getAllCategoryNames() {
-		List<Category> categories = getAllCategories();
+	public List<String> queryAllNames() {
+		List<Category> categories = query();
 		List<String> names = new ArrayList<String>();
 		for (Category c : categories) {
 			names.add(c.getName());

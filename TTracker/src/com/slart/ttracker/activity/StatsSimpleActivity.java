@@ -27,7 +27,7 @@ public class StatsSimpleActivity extends Activity {
 		CategoryDao cDao = new CategoryDao(getApplicationContext());
 		
 		Map<String, Long> values = new HashMap<String, Long>();
-		String[] categories = cDao.getAllCategoryNames().toArray(new String[0]);
+		String[] categories = cDao.queryAllNames().toArray(new String[0]);
 		Long start = 0L;
 		Long end = System.currentTimeMillis();
 		

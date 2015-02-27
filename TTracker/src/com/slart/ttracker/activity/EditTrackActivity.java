@@ -53,6 +53,8 @@ import com.slart.ttracker.util.Util;
 
 public class EditTrackActivity extends Activity {
 	
+	private ArrayAdapter<String> categoryAdapter;
+
 	private Spinner categoryField;
 	private EditText commentField;
 	private Button startDateField;
@@ -61,8 +63,6 @@ public class EditTrackActivity extends Activity {
 	private Button endTimeField;
 	private EditText latField;
 	private EditText lonField;
-	
-	private ArrayAdapter<String> categoryAdapter;
 	
 	private Long startDateEpoch;
 	private Long startTimeEpoch;
@@ -77,7 +77,6 @@ public class EditTrackActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle bundle) {
 		super.onCreate(bundle);
-
 		setContentView(R.layout.activity_create_new_track);
 		
 		categoryField = (Spinner) findViewById(R.id.track);
@@ -90,13 +89,12 @@ public class EditTrackActivity extends Activity {
         lonField = (EditText) findViewById(R.id.lon);
         
         CategoryDao dao = new CategoryDao(getApplicationContext());
-        List<String> categories = dao.getAllCategoryNames();
+        List<String> categories = dao.queryAllNames();
         categoryAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
 		categoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		categoryField.setAdapter(categoryAdapter);
 		
 		Bundle extras = getIntent().getExtras();
-		
 		if (extras == null) {
 
 			startDateField.setText(getString(R.string.today));
@@ -121,7 +119,6 @@ public class EditTrackActivity extends Activity {
 		}
 	
 		LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
-
 		LocationListener locationListener = new LocationListener() {
 		    public void onLocationChanged(Location location) {
 		    	currentLat = Math.floor(location.getLatitude()*10000)/10000;
@@ -131,7 +128,6 @@ public class EditTrackActivity extends Activity {
 		    public void onProviderEnabled(String provider) {}
 		    public void onProviderDisabled(String provider) {}
 		};
-
 		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
 
 	}
@@ -198,9 +194,46 @@ public class EditTrackActivity extends Activity {
 	}
 	
 	public void onCreateNewTrack(View view) {
-		Intent intent = new Intent(this, MainActivity.class);
 		saveState();
+		Intent intent = new Intent(this, MainActivity.class);
 		startActivity(intent);
+	}
+	
+	
+	private void saveState() {
+
+		String categoryValue = categoryField.getSelectedItem().toString();
+		String commentValue = commentField.getText().toString();
+		
+		String latString = latField.getText().toString();
+		Double latValue  = latString.isEmpty() ? null : Double.parseDouble(latString);
+
+		String lonString = lonField.getText().toString();
+		Double lonValue  = lonString.isEmpty() ? null : Double.parseDouble(lonString);
+
+		Long startEpoch = Util.addEpochs(startDateEpoch, startTimeEpoch);
+		Long endEpoch = Util.addEpochs(endDateEpoch, endTimeEpoch);
+
+		ContentValues values = new ContentValues();
+		values.put(TrackTable.COLUMN_COMMENT, commentValue);
+		values.put(TrackTable.COLUMN_CATEGORY, categoryValue);
+		values.put(TrackTable.COLUMN_LAT, latValue);
+		values.put(TrackTable.COLUMN_LON, lonValue);
+
+		values.put(TrackTable.COLUMN_START, startEpoch);
+		if (endEpoch != null) {
+			values.put(TrackTable.COLUMN_END, endEpoch);
+		}
+
+		if (trackUri == null) {
+			trackUri = getContentResolver().insert(TrackContentProvider.CONTENT_URI, values);
+			toastOnSubmit(getString(R.string.started_new_track), categoryValue);
+		} 
+		else {
+			getContentResolver().update(trackUri, values, null, null);
+			toastOnSubmit(getString(R.string.updated_track), categoryValue);
+		}
+
 	}
 
 	public void onLocationUpdateButtonClick(View view) {
@@ -397,43 +430,7 @@ public class EditTrackActivity extends Activity {
 		};
 
 	}
-	
-	private void saveState() {
 
-		String categoryValue = categoryField.getSelectedItem().toString();
-		String commentValue = commentField.getText().toString();
-		
-		String latString = latField.getText().toString();
-		Double latValue  = latString.isEmpty() ? null : Double.parseDouble(latString);
-
-		String lonString = lonField.getText().toString();
-		Double lonValue  = lonString.isEmpty() ? null : Double.parseDouble(lonString);
-
-		Long startEpoch = Util.addEpochs(startDateEpoch, startTimeEpoch);
-		Long endEpoch = Util.addEpochs(endDateEpoch, endTimeEpoch);
-
-		ContentValues values = new ContentValues();
-		values.put(TrackTable.COLUMN_COMMENT, commentValue);
-		values.put(TrackTable.COLUMN_CATEGORY, categoryValue);
-		values.put(TrackTable.COLUMN_LAT, latValue);
-		values.put(TrackTable.COLUMN_LON, lonValue);
-
-		values.put(TrackTable.COLUMN_START, startEpoch);
-		if (endEpoch != null) {
-			values.put(TrackTable.COLUMN_END, endEpoch);
-		}
-
-		if (trackUri == null) {
-			trackUri = getContentResolver().insert(TrackContentProvider.CONTENT_URI, values);
-			toastOnSubmit(getString(R.string.started_new_track), categoryValue);
-		} 
-		else {
-			getContentResolver().update(trackUri, values, null, null);
-			toastOnSubmit(getString(R.string.updated_track), categoryValue);
-		}
-
-	}
-	
 	private void toastOnSubmit(String label, String cat) {
 		Util.toast(getApplicationContext(), label+" "+cat);
 	}

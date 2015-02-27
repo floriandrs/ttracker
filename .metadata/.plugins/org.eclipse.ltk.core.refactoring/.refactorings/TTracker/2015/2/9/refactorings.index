@@ -37,3 +37,13 @@
 1424970472822	Delete element
 1424982384447	Rename field 'allColumns'
 1424984648051	Rename package 'com.slart.ttracker.activitiy'
+1425024951801	Rename local variable 'sqlDB'
+1425024966329	Rename local variable 'sqlDB'
+1425025081511	Rename local variable 'sqlDB'
+1425026294051	Rename method 'createCategory'
+1425026304929	Rename method 'deleteCategory'
+1425026312873	Rename method 'deleteCategoryByName'
+1425026360103	Rename method 'getAllCategories'
+1425026372639	Rename method 'getAllCategoryNames'
+1425026386286	Rename method 'queryAll'
+1425026565453	Rename method 'queryAllNamesNames'

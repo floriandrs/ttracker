@@ -45,15 +45,15 @@ public class EditCategoryActivity extends Activity {
 		
 		int count = dao.count(CategoryTable.COLUMN_NAME + "='"+name+"'");
 		if (count == 0) {
-			dao.createCategory(name);
+			dao.insert(name);
 			Util.toast(getApplicationContext(), getString(R.string.created_category) + " " + name);
 		}
 		else {
 			Util.toast(getApplicationContext(), getString(R.string.category_already_exists) + " " + name);
 		}
 		
-		Intent intent = new Intent(this, ViewAllCategoriesActivity.class);
-		startActivity(intent);
+		//Intent intent = new Intent(this, ViewAllCategoriesActivity.class);
+		//startActivity(intent);
 
 	}
 }
