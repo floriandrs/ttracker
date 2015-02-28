@@ -52,6 +52,7 @@
     <string name="invalid_geocoding_result">Adresse konnte nicht verarbeitet werden</string>
     <string name="web_error">Fehler beim laden der Seite</string>
     <string name="category_name">Kategorie-Name</string>
+    <string name="category_comment">Kommentar</string>
 
     <string-array name="tracks_array">
         <item>Programmieren</item>

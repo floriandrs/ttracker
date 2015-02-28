@@ -18,49 +18,74 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.slart.ttracker.activity.MainActivity"
+            android:name="com.fdrs.ttracker.activity.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name="com.slart.ttracker.activity.EditTrackActivity"
-            android:label="@string/title_activity_edit_track" >
+            android:name="com.fdrs.ttracker.activity.EditTrackActivity"
+            android:label="@string/title_activity_edit_track" 
+            android:parentActivityName="com.fdrs.ttracker.activity.MainActivity" >
+            <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="com.slart.ttracker.activity.MainActivity" />
         </activity>
 
         <provider
-            android:name="com.slart.ttracker.database.contentprovider.TrackContentProvider"
-            android:authorities="com.slart.ttracker.track.contentprovider"
+            android:name="com.fdrs.ttracker.database.contentprovider.TrackContentProvider"
+            android:authorities="com.fdrs.ttracker.track.contentprovider"
             android:enabled="true"
             android:exported="false" >
+
         </provider>
 
         <activity
-            android:name="com.slart.ttracker.activity.ViewAllTracksActivity"
-            android:label="@string/title_activity_view_all_tracks" >
+            android:name="com.fdrs.ttracker.activity.ViewAllTracksActivity"
+            android:label="@string/title_activity_view_all_tracks" 
+            android:parentActivityName="com.fdrs.ttracker.activity.MainActivity" >
+            <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="com.slart.ttracker.activity.MainActivity" />
         </activity>
         <activity
-            android:name="com.slart.ttracker.activity.StatsActivity"
-            android:label="@string/title_activity_stats" >
+            android:name="com.fdrs.ttracker.activity.StatsActivity"
+            android:label="@string/title_activity_stats" 
+            android:parentActivityName="com.fdrs.ttracker.activity.MainActivity" >
+            <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="com.slart.ttracker.activity.MainActivity" />
         </activity>
         <activity
-            android:name="com.slart.ttracker.activity.StatsSimpleActivity"
-            android:label="@string/title_activity_stats_simple" >
+            android:name="com.fdrs.ttracker.activity.StatsSimpleActivity"
+            android:label="@string/title_activity_stats_simple" 
+            android:parentActivityName="com.fdrs.ttracker.activity.MainActivity" >
+            <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="com.slart.ttracker.activity.MainActivity" />
         </activity>
         <activity
-            android:name="com.slart.ttracker.activity.StatsAverageActivity"
-            android:label="@string/title_activity_stats_average" >
+            android:name="com.fdrs.ttracker.activity.StatsAverageActivity"
+            android:label="@string/title_activity_stats_average" 
+            android:parentActivityName="com.fdrs.ttracker.activity.MainActivity" >
+            <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="com.slart.ttracker.activity.MainActivity" />
         </activity>
         <activity
-            android:name="com.slart.ttracker.activity.EditCategoryActivity"
-            android:label="@string/title_activity_edit_category" >
+            android:name="com.fdrs.ttracker.activity.EditCategoryActivity"
+            android:label="@string/title_activity_edit_category" 
+            android:parentActivityName="com.fdrs.ttracker.activity.MainActivity" >
+            <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="com.slart.ttracker.activity.MainActivity" />
         </activity>
         <activity
-            android:name="com.slart.ttracker.activity.ViewAllCategoriesActivity"
-            android:label="@string/title_activity_view_all_categories" >
+            android:name="com.fdrs.ttracker.activity.ViewAllCategoriesActivity"
+            android:label="@string/title_activity_view_all_categories"
+            android:parentActivityName="com.fdrs.ttracker.activity.MainActivity" >
             <meta-data
             android:name="android.support.PARENT_ACTIVITY"
             android:value="com.slart.ttracker.activity.MainActivity" />

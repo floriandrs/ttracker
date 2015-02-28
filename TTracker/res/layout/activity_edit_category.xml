@@ -6,7 +6,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.slart.ttracker.activity.EditCategoryActivity" >
+    tools:context="com.fdrs.ttracker.activity.EditCategoryActivity" >
 
     <TextView
         android:id="@+id/nameLabel"
@@ -18,11 +18,22 @@
         android:id="@+id/name"
         android:layout_below="@id/nameLabel"
         style="@style/FormWidthHeight" /> 
+        
+    <TextView
+        android:id="@+id/commentLabel"
+        android:layout_below="@id/name"
+        android:text="@string/category_comment"
+        style="@style/FormLabel" /> 
+
+    <EditText
+        android:id="@+id/comment"
+        android:layout_below="@id/commentLabel"
+        style="@style/FormWidthHeight" /> 
     
     <Button
         android:id="@+id/enter"
         android:layout_alignParentRight="true"
-        android:layout_below="@id/name"
+        android:layout_below="@id/comment"
         style="@style/FormTopMargin"
         android:text="@string/create"
         android:onClick="onCreateNewCategory" />

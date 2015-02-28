@@ -30,21 +30,21 @@ public final class R {
         public static final int ic_launcher=0x7f020002;
     }
     public static final class id {
-        public static final int TextView01=0x7f09001e;
-        public static final int action_add=0x7f090026;
-        public static final int action_settings=0x7f090021;
+        public static final int TextView01=0x7f09001f;
+        public static final int action_add=0x7f090027;
+        public static final int action_settings=0x7f090022;
         public static final int close_current_track=0x7f090015;
         public static final int comment=0x7f09000e;
         public static final int commentLabel=0x7f09000d;
         public static final int current_track_label=0x7f090012;
         public static final int current_track_value=0x7f090013;
-        public static final int delete_category=0x7f090020;
-        public static final int delete_track=0x7f090023;
+        public static final int delete_category=0x7f090021;
+        public static final int delete_track=0x7f090024;
         public static final int endDate=0x7f090006;
         public static final int endLabel=0x7f090005;
         public static final int endTime=0x7f090007;
         public static final int enter=0x7f09000f;
-        public static final int export_track_to_calendar=0x7f090024;
+        public static final int export_track_to_calendar=0x7f090025;
         public static final int georefButton=0x7f09000c;
         public static final int lat=0x7f090009;
         public static final int locationButton=0x7f09000b;
@@ -58,17 +58,18 @@ public final class R {
         public static final int open_activity_stats_average=0x7f09001b;
         public static final int open_activity_stats_simple=0x7f09001a;
         public static final int open_activity_view_all_categories=0x7f090019;
-        public static final int rowCategory=0x7f09001d;
-        public static final int rowDates=0x7f09001f;
+        public static final int rowCategory=0x7f09001e;
+        public static final int rowDates=0x7f090020;
         public static final int startDate=0x7f090003;
         public static final int startLabel=0x7f090002;
         public static final int startTime=0x7f090004;
-        public static final int stats_simple_result=0x7f09001c;
+        public static final int stats_average_result=0x7f09001c;
+        public static final int stats_simple_result=0x7f09001d;
         public static final int track=0x7f090001;
         public static final int trackLabel=0x7f090000;
         public static final int update_current_track=0x7f090016;
-        public static final int update_track=0x7f090022;
-        public static final int view_track_in_map=0x7f090025;
+        public static final int update_track=0x7f090023;
+        public static final int view_track_in_map=0x7f090026;
     }
     public static final class layout {
         public static final int activity_create_new_track=0x7f030000;
@@ -102,6 +103,7 @@ public final class R {
         public static final int address_lookup_start=0x7f05002d;
         public static final int app_name=0x7f050000;
         public static final int category_already_exists=0x7f050015;
+        public static final int category_comment=0x7f050033;
         public static final int category_name=0x7f050032;
         public static final int close_current_track=0x7f050010;
         public static final int comment=0x7f050022;
@@ -133,12 +135,12 @@ public final class R {
         public static final int open_view_all=0x7f050009;
         public static final int since=0x7f05001d;
         public static final int started_new_track=0x7f050026;
-        public static final int title_activity_edit_category=0x7f050033;
+        public static final int title_activity_edit_category=0x7f050034;
         public static final int title_activity_edit_track=0x7f050004;
         public static final int title_activity_stats=0x7f050005;
         public static final int title_activity_stats_average=0x7f050007;
         public static final int title_activity_stats_simple=0x7f050006;
-        public static final int title_activity_view_all_categories=0x7f050034;
+        public static final int title_activity_view_all_categories=0x7f050035;
         public static final int title_activity_view_all_tracks=0x7f050003;
         public static final int to=0x7f050025;
         public static final int today=0x7f05001c;

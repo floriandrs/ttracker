@@ -6,7 +6,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.slart.ttracker.activity.StatsSimpleActivity" >
+    tools:context="com.fdrs.ttracker.activity.StatsSimpleActivity" >
 
     <TextView
         android:id="@+id/stats_simple_result"
