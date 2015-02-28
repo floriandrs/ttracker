@@ -1,5 +1,0 @@
-package com.slart.ttracker.database.dao;
-
-public class CategoryDao {
-
-}
