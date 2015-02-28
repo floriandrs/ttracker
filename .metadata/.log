@@ -12778,3 +12778,26 @@ org.xml.sax.SAXParseException; lineNumber: 64; columnNumber: 13; Element type "a
 
 !ENTRY org.eclipse.ui 2 2 2015-02-27 22:21:14.451
 !MESSAGE Invalid property category path: ValidationPropertiesPage (bundle: org.eclipse.wst.xml.ui, propertyPage: org.eclipse.wst.xml.ui.propertyPage.project.validation)
+!SESSION 2015-02-28 10:11:50.341 -----------------------------------------------
+eclipse.buildId=M20130204-1200
+java.version=1.7.0_75
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Framework arguments:  -product com.android.ide.eclipse.adt.package.adtproduct
+Command-line arguments:  -os linux -ws gtk -arch x86_64 -product com.android.ide.eclipse.adt.package.adtproduct
+
+!ENTRY com.android.ide.eclipse.adt 4 4 2015-02-28 10:12:00.274
+!MESSAGE Failed
+!STACK 0
+java.lang.NullPointerException
+	at com.android.ide.eclipse.adt.internal.lint.EclipseLintClient.getTargets(EclipseLintClient.java:916)
+	at com.android.tools.lint.detector.api.Project.readManifest(Project.java:652)
+	at com.android.tools.lint.client.api.LintDriver.runFileDetectors(LintDriver.java:946)
+	at com.android.tools.lint.client.api.LintDriver.checkProject(LintDriver.java:880)
+	at com.android.tools.lint.client.api.LintDriver.analyze(LintDriver.java:431)
+	at com.android.tools.lint.client.api.LintDriver.analyze(LintDriver.java:374)
+	at com.android.ide.eclipse.adt.internal.lint.LintJob.run(LintJob.java:163)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+
+!ENTRY org.eclipse.ui 2 2 2015-02-28 10:24:50.911
+!MESSAGE Invalid property category path: ValidationPropertiesPage (bundle: org.eclipse.wst.xml.ui, propertyPage: org.eclipse.wst.xml.ui.propertyPage.project.validation)
