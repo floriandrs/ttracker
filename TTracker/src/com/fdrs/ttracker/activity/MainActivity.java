@@ -26,14 +26,13 @@ public class MainActivity extends Activity {
 	
 	private void refreshState() {
 	
-		Cursor currentTrackCursor = fetchCurrentTrack();
-		int activeCount = currentTrackCursor.getCount();
-
 		Button createButton = (Button) findViewById(R.id.main_open_create_new_track);
 		Button updateButton = (Button) findViewById(R.id.update_current_track);
 		Button closeButton = (Button) findViewById(R.id.close_current_track);
-
 		TextView currentTrackValue = (TextView) findViewById(R.id.current_track_value);
+
+		Cursor currentTrackCursor = fetchCurrentTrack();
+		int activeCount = currentTrackCursor.getCount();
 
 		if (activeCount==0) {
 			createButton.setEnabled(true);
@@ -99,6 +98,7 @@ public class MainActivity extends Activity {
 		Long id = c.getLong(c.getColumnIndexOrThrow(TrackTable.COLUMN_ID));
 		Intent intent = new Intent(this, EditTrackActivity.class);
 		intent.putExtra(TrackContentProvider.CONTENT_ITEM_TYPE, DbUtil.buildUri(id));
+		c.close();
 		startActivity(intent);
 	}
 

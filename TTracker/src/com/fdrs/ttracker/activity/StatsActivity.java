@@ -40,8 +40,8 @@ public class StatsActivity extends Activity {
 
 	public void onOpenActivityStatsAverage(View view) {
 		Intent intent = new Intent(this, StatsAverageActivity.class);
-		intent.putExtra(StatsAverageActivity.START, Util.buildDateEpoch(2015, 1, 1));
-		intent.putExtra(StatsAverageActivity.END, Util.buildDateEpoch(2016, 1, 1));
+		intent.putExtra(StatsAverageActivity.START, Util.buildDateEpoch(2013, 1, 1));
+		intent.putExtra(StatsAverageActivity.END, Util.buildDateEpoch(2018, 1, 1));
 		startActivity(intent);
 	}
 }

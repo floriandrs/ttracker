@@ -59,6 +59,7 @@ public class EditCategoryActivity extends Activity {
 		
 		//Intent intent = new Intent(this, ViewAllCategoriesActivity.class);
 		//startActivity(intent);
+		dao.close();
 
 	}
 }

@@ -14,7 +14,6 @@
 <fullyQualifiedTypeName name="android.widget.PopupMenu.OnMenuItemClickListener"/>
 <fullyQualifiedTypeName name="android.widget.AdapterView.AdapterContextMenuInfo"/>
 <fullyQualifiedTypeName name="android.widget.AdapterView.OnItemLongClickListener"/>
-<fullyQualifiedTypeName name="java.util.Date"/>
 <fullyQualifiedTypeName name="java.util.GregorianCalendar"/>
 <fullyQualifiedTypeName name="android.widget.TimePicker"/>
 <fullyQualifiedTypeName name="com.slart.ttracker.dialog.TimePickerFragment"/>
@@ -50,4 +49,8 @@
 <fullyQualifiedTypeName name="com.slart.ttracker.util.Util"/>
 <fullyQualifiedTypeName name="com.slart.ttracker.activity.ViewAllCategoriesActivity"/>
 <fullyQualifiedTypeName name="com.slart.ttracker.activity.MainActivity"/>
+<fullyQualifiedTypeName name="java.util.Date"/>
+<fullyQualifiedTypeName name="com.fdrs.ttracker.activity.StatsAverageActivity"/>
+<fullyQualifiedTypeName name="com.fdrs.ttracker.util.Util"/>
+<fullyQualifiedTypeName name="com.fdrs.ttracker.activity.EditTrackActivity"/>
 </qualifiedTypeNameHistroy>

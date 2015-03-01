@@ -72,9 +72,11 @@ public class EditTrackActivity extends Activity {
 	private double currentLat;
 	private double currentLon;
 	
-	private boolean update;
+	private boolean updateFromList;
 	
 	private Uri trackUri;
+	
+	public static final String FROM_LIST = "fromList";
 	
 	@Override
 	protected void onCreate(Bundle bundle) {
@@ -93,6 +95,7 @@ public class EditTrackActivity extends Activity {
         
         CategoryDao dao = new CategoryDao(getApplicationContext());
         List<String> categories = dao.queryAllNames();
+        dao.close();
         categoryAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
 		categoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		categoryField.setAdapter(categoryAdapter);
@@ -100,7 +103,7 @@ public class EditTrackActivity extends Activity {
 		Bundle extras = getIntent().getExtras();
 		if (extras == null) {
 			
-			update = false;
+			updateFromList = false;
 
 			startDateField.setText(getString(R.string.today));
 			startTimeField.setText(getString(R.string.now));
@@ -114,8 +117,9 @@ public class EditTrackActivity extends Activity {
 
 		}
 		else {
-
-			update = true;
+			
+			Intent intent = getIntent();
+			updateFromList = intent.getBooleanExtra(FROM_LIST, false);
 
 			trackUri = extras.getParcelable(TrackContentProvider.CONTENT_ITEM_TYPE);
 			fillData(trackUri);
@@ -202,7 +206,7 @@ public class EditTrackActivity extends Activity {
 	
 	public void onCreateNewTrack(View view) {
 		saveState();
-		Intent intent = new Intent(this, update ? ViewAllTracksActivity.class : MainActivity.class);
+		Intent intent = new Intent(this, updateFromList ? ViewAllTracksActivity.class : MainActivity.class);
 		startActivity(intent);
 	}
 	

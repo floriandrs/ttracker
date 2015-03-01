@@ -36,7 +36,7 @@
     <string name="none">Kein aktiver Track</string>
     <string name="location">Position (Lat,Long)</string>
     <string name="comment">Kommentar</string>
-    <string name="track">Task</string>
+    <string name="track">Kategorien</string>
     <string name="from">von</string>
     <string name="to">bis</string>
     <string name="started_new_track">Neuer Track gestartet:</string>

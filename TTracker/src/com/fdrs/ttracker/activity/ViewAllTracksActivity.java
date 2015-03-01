@@ -125,6 +125,7 @@ public class ViewAllTracksActivity extends ListActivity implements LoaderManager
 	protected void updateTrack(long id) {
 		Intent intent = new Intent(this, EditTrackActivity.class);
 		intent.putExtra(TrackContentProvider.CONTENT_ITEM_TYPE, DbUtil.buildUri(id));
+		intent.putExtra(EditTrackActivity.FROM_LIST, true); 
 		startActivity(intent);
 	}
 
